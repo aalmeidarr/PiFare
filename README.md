@@ -29,7 +29,7 @@ MFRC522 is connected using SPI and SSD1306 (128x32) is connected using I2C.
 ## Micropython 
 Put all the modules and main.py to the root of Pico (you must have micropython in it) and then follow the instruction in oled screen. You can do it using rshell:
 
-shell
+```shell
 $ rshell -p /dev/ttyACM0 --buffer-size 512
 /Projects/PiFare> cp * /pyboard/
 Copying '/Projects/PiFare/README.md' to '/pyboard/README.md' ...
@@ -38,7 +38,7 @@ Copying '/Projects/PiFare/ssd1306.py' to '/pyboard/ssd1306.py' ...
 Copying '/Projects/PiFare/main.py' to '/pyboard/main.py' ...
 Omitting directory /Projects/PiFare/.git
 Copying '/Projects/PiFare/mfrc522.py' to '/pyboard/mfrc522.py' ...
-
+```
 
 
 ## Keys
