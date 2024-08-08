@@ -12,6 +12,10 @@ To do features are:
 - [ ] UID cloner with Mifare Classic 1k Gen 1A
 - [ ] Some Popular Attacks in Mifare Classic 1k
 - [ ] PCB
+# Example
+
+https://github.com/user-attachments/assets/a686930f-6721-4764-b93c-3a06062b3e50
+
 
 # Usage
 ## Wiring
@@ -25,6 +29,7 @@ MFRC522 is connected using SPI and SSD1306 (128x32) is connected using I2C.
 |MFRC522|CS|GP1|
 |SSD1306|SDA|GP12|
 |SSD1306|SCL|GP13|
+|BUTTON||GP21|
 
 ## Micropython 
 Put all the modules and main.py to the root of Pico (you must have micropython in it) and then follow the instruction in oled screen. You can do it using rshell:
