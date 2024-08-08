@@ -3,11 +3,20 @@ from mfrc522 import MFRC522
 from ssd1306 import SSD1306_I2C
 from utime import sleep_ms
 
-SDA_PIN=12
-SCL_PIN=13
+OLED_SDA_PIN=12
+OLED_SCL_PIN=13
 I2C_ID=0
 WIDTH=128
 HEIGHT=32
+
+SPI_ID=0
+MFRC522_SCK=2
+MFRC522_MOSI=3
+MFRC522_MISO=4
+MFRC522_RST=22
+MFRC522_CS=1
+
+BTN_PIN = 21
 
 def int_to_hexstr(lst: list) -> str:
     return "".join([f"{i:02X}".upper() for i in lst])
@@ -17,7 +26,7 @@ def hexstr_to_int(hexstr: str) -> list:
 
 
 def init_oled() -> SSD1306_I2C:
-    i2c = I2C(I2C_ID, sda=Pin(SDA_PIN), scl=Pin(SCL_PIN), freq=200000)
+    i2c = I2C(I2C_ID, sda=Pin(OLED_SDA_PIN), scl=Pin(OLED_SCL_PIN), freq=200000)
     oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)
     oled.text("   PiFare v0.1", 0, 10)
     oled.text("   @aalmeidarr", 0, 20)
@@ -77,13 +86,13 @@ def bruteforce(reader: MFRC522, oled: SSD1306_I2C, uid: list,  keys: list) -> li
 
 if __name__ == "__main__":
     oled = init_oled()
-    btn = Pin(21, Pin.IN, Pin.PULL_UP)
+    btn = Pin(BTN_PIN, Pin.IN, Pin.PULL_UP)
     oled.fill(0)
     oled.text("Press to read", 0, 10)
     oled.show()
     while btn.value() != 0:
         pass
-    reader = MFRC522(spi_id=0, sck=2, miso=4, mosi=3, rst=22, cs=1)
+    reader = MFRC522(spi_id=SPI_ID, sck=MFRC522_SCK, miso=MFRC522_MISO, mosi=MFRC522_MOSI, rst=MFRC522_RST, cs=MFRC522_CS)
     uid = search(reader)
     oled.fill(0)
     oled.text("[?] Bruteforce:", 0, 0)
